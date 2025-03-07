@@ -16,20 +16,28 @@ const createFile = (file = './README.md', content) => {
     fs.writeFileSync(file, content, 'utf8');
 }
 
+const funUl = (item) => {
+    if (item.desc) {
+        return [{
+            ul: item.desc.filter(it => it)
+        }]
+    }
+    return [];
+}
+
 typekeys.forEach(item => {
     const subItem = allData[item];
     const subKyeys = Object.keys(subItem);
     jsonMkDownList.push({
         h3: item
     });
-    jsonMkDownList.push({
-        ul: [subKyeys.map(ssItem => {
-            return [ssItem + ": " + subItem[ssItem].link, {
-                ul: subItem[ssItem].desc
-            }]
-        })],
-    });
+    subKyeys.map(ssItem => {
+        jsonMkDownList.push({
+            ul: [ssItem + ": " + subItem[ssItem].link].concat(funUl(subItem[ssItem]))
+        })
+    })
 });
+
 
 rimrafSync('./docs');
 
