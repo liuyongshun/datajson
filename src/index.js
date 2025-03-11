@@ -162,5 +162,11 @@ module.exports = {
             "desc": [""]
         }
         
-    }
+    },
+    "总导航": {
+        "导航": {
+            "link": "https://github.com/justalong/navjson/blob/main/docs/res.md",
+            "desc": [""]
+        }
+    },
 }
